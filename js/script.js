@@ -17,6 +17,34 @@ document.addEventListener('DOMContentLoaded', function() {
     loadToppers(currentBranch);
     loadGallery();
     setupBranchDropdown();
+    // Mobile nav toggle
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function() {
+            const open = navMenu.classList.toggle('mobile-open');
+            navToggle.setAttribute('aria-expanded', open);
+            navToggle.classList.toggle('open', open);
+        });
+
+        // Close menu when a link is clicked
+        navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', function() {
+            if (navMenu.classList.contains('mobile-open')) {
+                navMenu.classList.remove('mobile-open');
+                navToggle.setAttribute('aria-expanded', 'false');
+                navToggle.classList.remove('open');
+            }
+        }));
+
+        // Ensure menu closes on resize to larger screens
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && navMenu.classList.contains('mobile-open')) {
+                navMenu.classList.remove('mobile-open');
+                navToggle.setAttribute('aria-expanded', 'false');
+                navToggle.classList.remove('open');
+            }
+        });
+    }
 });
 
 // Setup branch dropdown
@@ -138,7 +166,10 @@ function initializeSlider() {
 
         const dot = document.createElement('span');
         dot.className = 'dot';
-        dot.setAttribute('onclick', `currentSlide(${idx+1})`);
+        dot.setAttribute('data-slide', idx + 1);
+        dot.addEventListener('click', function() {
+            goToSlide(parseInt(this.getAttribute('data-slide')));
+        });
         dotsContainer.appendChild(dot);
     });
 
@@ -149,6 +180,11 @@ function initializeSlider() {
 // Change slide
 function changeSlide(n) {
     showSlides(currentSlide += n);
+}
+
+// Go to specific slide (for dot clicks)
+function goToSlide(n) {
+    showSlides(currentSlide = n);
 }
 
 // Current slide

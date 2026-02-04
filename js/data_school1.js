@@ -93,6 +93,7 @@ window.school1Data = {
     'gallery-7.jpg',
     'gallery-8.jpg',
     'gallery-9.jpg',
+    'gallery-10.jpg',
   ],
 
   slider: [
