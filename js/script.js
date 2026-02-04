@@ -140,26 +140,46 @@ function loadEvents() {
 
 // Load and display toppers
 function loadToppers() {
-    const toppers = siteData.toppers || [];
-    const container = document.getElementById('toppers-container');
-    container.innerHTML = '';
-    
-    toppers.forEach(topper => {
-        const topperCard = document.createElement('div');
-        topperCard.className = 'topper-card';
-        
-        topperCard.innerHTML = `
-            <img src="${getSiteImagePath(topper.image)}" alt="${topper.name}" class="topper-image">
-            <h3>${topper.name}</h3>
-            <div class="topper-info">
-                <p><strong>Class:</strong> ${topper.class}</p>
-                <p><strong>Mark:</strong> ${topper.total}</p>
-            </div>
-            <div class="rank-badge">Rank: ${topper.rank}</div>
-        `;
-        
-        container.appendChild(topperCard);
-    });
+    const school1 = siteData.toppers?.school1 || [];
+    const school2 = siteData.toppers?.school2 || [];
+    const container1 = document.getElementById('toppers-container-school1');
+    const container2 = document.getElementById('toppers-container-school2');
+
+    if (container1) {
+        container1.innerHTML = '';
+        school1.forEach(topper => {
+            const topperCard = document.createElement('div');
+            topperCard.className = 'topper-card';
+            topperCard.innerHTML = `
+                <img src="${getSiteImagePath(topper.image)}" alt="${topper.name}" class="topper-image">
+                <h3>${topper.name}</h3>
+                <div class="topper-info">
+                    <p><strong>Class:</strong> ${topper.class}</p>
+                    <p><strong>Mark:</strong> ${topper.total}</p>
+                </div>
+                <div class="rank-badge">Rank: ${topper.rank}</div>
+            `;
+            container1.appendChild(topperCard);
+        });
+    }
+
+    if (container2) {
+        container2.innerHTML = '';
+        school2.forEach(topper => {
+            const topperCard = document.createElement('div');
+            topperCard.className = 'topper-card';
+            topperCard.innerHTML = `
+                <img src="${getSiteImagePath(topper.image)}" alt="${topper.name}" class="topper-image">
+                <h3>${topper.name}</h3>
+                <div class="topper-info">
+                    <p><strong>Class:</strong> ${topper.class}</p>
+                    <p><strong>Mark:</strong> ${topper.total}</p>
+                </div>
+                <div class="rank-badge">Rank: ${topper.rank}</div>
+            `;
+            container2.appendChild(topperCard);
+        });
+    }
 }
 
 // Load gallery
