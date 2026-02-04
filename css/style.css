@@ -222,20 +222,21 @@ body {
 /* Hero Slider */
 .hero-slider {
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
+    max-width: none;
+    margin: 0;
+    padding: 1rem;
 }
 
 .slider-container {
     position: relative;
     background: var(--light-color);
-    border-radius: 10px;
+    border-radius: 0;
     overflow: hidden;
     width: 100%;
     height: auto;
     max-height: none;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 19 / 9;
+    max-height: 500px;
 }
 
 .slide {
