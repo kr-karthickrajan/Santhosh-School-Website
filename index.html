@@ -8,31 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-left">
-                <div class="logo">
-                    <img id="school-logo" src="images/siteImage/school-logo.png" alt="School Logo" class="logo-img">
-                    <span class="school-name">Santhosh Group of Schools</span>
-                    <img id="school-logo-secondary" src="images/siteImage/school-secondary-logo.png" alt="School Logo" class="logo-img logo-img-secondary">
-                </div>
-            </div>
-            <!-- Mobile hamburger toggle -->
-            <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-                <span class="hamburger"></span>
-            </button>
-
-            <div class="nav-right">
-                <ul class="nav-menu">
-                    <li><a href="#home" class="nav-link">Home</a></li>
-                    <li><a href="#about" class="nav-link">About Us</a></li>
-                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
-                    <li><a href="#contact" class="nav-link">Contact Us</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div id="site-nav"></div>
 
     <main>
         <!-- Image Slider -->
@@ -143,44 +119,24 @@
             <div class="gallery-container" id="gallery-container">
                 <!-- Gallery images will be populated by JavaScript -->
             </div>
+            <div class="gallery-more">
+                <a class="btn" href="gallery.html">More Photos</a>
+            </div>
         </section>
+
+        <!-- Image Popup -->
+        <div class="lightbox" id="lightbox" aria-hidden="true">
+            <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+            <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous image">&#10094;</button>
+            <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next image">&#10095;</button>
+            <button class="lightbox-close" id="lightbox-close" aria-label="Close image">&times;</button>
+            <img class="lightbox-image" id="lightbox-image" alt="Expanded gallery image">
+        </div>
     </main>
 
-    <!-- Footer -->
-    <footer id="contact" class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Our Contacts</h3>
-                <div class="contact-info">
-                    <p><i class="fas fa-phone"></i> +91-XXXXXXXXXX</p>
-                    <p><i class="fas fa-envelope"></i> info@santhoshschool.edu</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Whitefield, Bangalore</p>
-                </div>
-            </div>
-            <div class="footer-section">
-                <div class="footer-logo">
-                    <img id="footer-logo-img" src="images/school1/school-logo.png" alt="School Logo">
-                    <div class="school-description">
-                        <h4>Santhosh School</h4>
-                        <p>Providing quality education and holistic development for students since 2000.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Santhosh School. All rights reserved.</p>
-        </div>
-    </footer>
+    <div id="site-footer"></div>
 
+    <script src="js/layout.js"></script>
     <script src="js/site_data.js"></script>
     <script src="js/gallery_school1.js"></script>
     <script src="js/gallery_school2.js"></script>

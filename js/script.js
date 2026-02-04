@@ -1,5 +1,7 @@
 let currentSlide = 1;
 let currentGallery = 'school1';
+let lightboxImages = [];
+let lightboxIndex = 0;
 
 const siteData = window.siteData || {};
 
@@ -20,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadToppers();
     loadGallery();
     setupGalleryDropdown();
+    setupLightbox();
     // Mobile nav toggle
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
@@ -102,9 +105,12 @@ function loadSiteData() {
         });
     }
 
-    document.getElementById('stat-students').textContent = siteData.info.stats.students;
-    document.getElementById('stat-teachers').textContent = siteData.info.stats.teachers;
-    document.getElementById('stat-classes').textContent = siteData.info.stats.classes;
+    const studentsEl = document.getElementById('stat-students');
+    const teachersEl = document.getElementById('stat-teachers');
+    const classesEl = document.getElementById('stat-classes');
+    if (studentsEl) studentsEl.textContent = siteData.info.stats.students;
+    if (teachersEl) teachersEl.textContent = siteData.info.stats.teachers;
+    if (classesEl) classesEl.textContent = siteData.info.stats.classes;
     const headerLogo = document.getElementById('school-logo');
     const headerLogoSecondary = document.getElementById('school-logo-secondary');
     const footerLogo = document.getElementById('footer-logo-img');
@@ -115,8 +121,9 @@ function loadSiteData() {
 
 // Load and display events
 function loadEvents() {
-    const events = siteData.events || [];
     const container = document.getElementById('events-container');
+    if (!container) return;
+    const events = siteData.events || [];
     container.innerHTML = '';
     
     events.forEach(event => {
@@ -144,6 +151,7 @@ function loadToppers() {
     const school2 = siteData.toppers?.school2 || [];
     const container1 = document.getElementById('toppers-container-school1');
     const container2 = document.getElementById('toppers-container-school2');
+    if (!container1 && !container2) return;
 
     if (container1) {
         container1.innerHTML = '';
@@ -185,22 +193,98 @@ function loadToppers() {
 // Load gallery
 function loadGallery() {
     const container = document.getElementById('gallery-container');
-    const galleryImages = currentGallery === 'school2' ? (window.gallerySchool2 || []) : (window.gallerySchool1 || []);
+    const isGalleryPage =
+        document.body?.getAttribute('data-gallery-mode') === 'all' ||
+        window.location.pathname.toLowerCase().includes('gallery.html');
+    const source = currentGallery === 'school2' ? (window.gallerySchool2 || []) : (window.gallerySchool1 || []);
+
+    let galleryImages = [];
+    if (Array.isArray(source)) {
+        galleryImages = source;
+    } else if (source && typeof source === 'object') {
+        if (isGalleryPage) {
+            galleryImages = source.all || source.home || [];
+        } else {
+            galleryImages = source.home || source.all || [];
+        }
+    }
     
     container.innerHTML = '';
-    
+
     galleryImages.forEach((image, index) => {
         const galleryItem = document.createElement('div');
         galleryItem.className = 'gallery-item';
+        const fullSrc = getGalleryImagePath(image);
         
         galleryItem.innerHTML = `
-            <img src="${getGalleryImagePath(image)}" alt="Gallery Image ${index + 1}">
+            <img src="${fullSrc}" alt="Gallery Image ${index + 1}" data-full="${fullSrc}" data-index="${index}">
             <div class="gallery-overlay">
 
             </div>
         `;
         
         container.appendChild(galleryItem);
+    });
+
+    lightboxImages = galleryImages.map(img => getGalleryImagePath(img));
+}
+
+function setupLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-image');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxBackdrop = document.getElementById('lightbox-backdrop');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
+    if (!lightbox || !lightboxImg || !lightboxClose || !lightboxBackdrop) return;
+
+    document.addEventListener('click', function(e) {
+        const item = e.target.closest('.gallery-item');
+        if (!item) return;
+        const img = item.querySelector('img');
+        if (!img) return;
+        const src = img.getAttribute('data-full') || img.getAttribute('src');
+        const indexAttr = img.getAttribute('data-index');
+        lightboxIndex = indexAttr ? parseInt(indexAttr, 10) : 0;
+        if (!src) return;
+        lightboxImg.src = src;
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+    });
+
+    function closeLightbox() {
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        lightboxImg.src = '';
+    }
+
+    function showLightboxImage(nextIndex) {
+        if (!lightboxImages.length) return;
+        if (nextIndex < 0) {
+            lightboxIndex = lightboxImages.length - 1;
+        } else if (nextIndex >= lightboxImages.length) {
+            lightboxIndex = 0;
+        } else {
+            lightboxIndex = nextIndex;
+        }
+        lightboxImg.src = lightboxImages[lightboxIndex];
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxBackdrop.addEventListener('click', closeLightbox);
+    if (lightboxPrev) lightboxPrev.addEventListener('click', () => showLightboxImage(lightboxIndex - 1));
+    if (lightboxNext) lightboxNext.addEventListener('click', () => showLightboxImage(lightboxIndex + 1));
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+            closeLightbox();
+        }
+        if (lightbox.classList.contains('open') && e.key === 'ArrowLeft') {
+            showLightboxImage(lightboxIndex - 1);
+        }
+        if (lightbox.classList.contains('open') && e.key === 'ArrowRight') {
+            showLightboxImage(lightboxIndex + 1);
+        }
     });
 }
 
