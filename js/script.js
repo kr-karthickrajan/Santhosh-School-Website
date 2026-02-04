@@ -63,7 +63,45 @@ function setupGalleryDropdown() {
 // Load site data (single set for all sections)
 function loadSiteData() {
     if (!siteData.info) return;
-    document.getElementById('branch-description').textContent = siteData.info.description;
+    const foundationEl = document.getElementById('about-foundation');
+    const aimEl = document.getElementById('about-aim');
+    const featuresEl = document.getElementById('about-features');
+    const mottoTitleEl = document.getElementById('motto-title');
+    const mottoLearnEl = document.getElementById('motto-learn');
+    const mottoLoveEl = document.getElementById('motto-love');
+    const mottoServeEl = document.getElementById('motto-serve');
+    const leadershipGrid = document.getElementById('leadership-grid');
+
+    if (foundationEl) foundationEl.textContent = siteData.info.foundation || '';
+    if (aimEl) aimEl.textContent = siteData.info.aim || '';
+    if (mottoTitleEl) mottoTitleEl.textContent = siteData.info.motto?.title || '';
+    if (mottoLearnEl) mottoLearnEl.textContent = siteData.info.motto?.learn || '';
+    if (mottoLoveEl) mottoLoveEl.textContent = siteData.info.motto?.love || '';
+    if (mottoServeEl) mottoServeEl.textContent = siteData.info.motto?.serve || '';
+
+    if (featuresEl) {
+        featuresEl.innerHTML = '';
+        (siteData.info.features || []).forEach(feature => {
+            const li = document.createElement('li');
+            li.textContent = feature;
+            featuresEl.appendChild(li);
+        });
+    }
+
+    if (leadershipGrid) {
+        leadershipGrid.innerHTML = '';
+        (siteData.leadership || []).forEach(leader => {
+            const card = document.createElement('div');
+            card.className = 'leader-card';
+            card.innerHTML = `
+                <img src="${getSiteImagePath(leader.image)}" alt="${leader.name}" class="leader-image">
+                <h4>${leader.role}</h4>
+                <p>${leader.name}</p>
+            `;
+            leadershipGrid.appendChild(card);
+        });
+    }
+
     document.getElementById('stat-students').textContent = siteData.info.stats.students;
     document.getElementById('stat-teachers').textContent = siteData.info.stats.teachers;
     document.getElementById('stat-classes').textContent = siteData.info.stats.classes;

@@ -1,8 +1,28 @@
 // Base site content (shared for all sections)
 window.siteData = {
   info: {
-    description:
-      'Located in the heart of Whitefield, our Whitefield branch serves the community with excellence in education. We provide state-of-the-art infrastructure and experienced faculty dedicated to nurturing young minds. Our campus spans over 2 acres with modern classrooms, science labs, computer labs, and a spacious playground.',
+    foundation:
+      'SANTHOSH NURSERY & PRIMARY SCHOOL established and owned by our "KALVI THANTHAI" MR. G.V. MANICKARAJA with the advice of our headmaster Mr. M. JESURAJA B.Sc, M.Ed., in the year 1988. And hereby the School run by our Principal Mr. M. VINCENT PRAKASH B.F.A., DSA., Our school aim is to train youn children in good education and character especially belongs to the poor and marginalized society people.',
+    aim:
+      'The main aim is to give education to the poor students with low fees. Teachers are motivated to enhance the children knowledge. New building was launched in the year 2000 for the grown up students. The method of CCE [Continuous Comprehensive Evolution] is followed in our school. We teach the extra subjects of Computer, General Knowledge, Spoken English, Hindi, Telugu, Drawing and Hand-Writing etc... Our Special activities are Sports, Competitions, Drawing & Painting, Festival Celebration and Picnic.',
+    features: [
+      'Experienced and caring faculty with strong subject expertise.',
+      'Smart classrooms with interactive learning tools.',
+      'Well-equipped science and computer laboratories.',
+      'Strong focus on language, communication, and public speaking.',
+      'Sports and physical education for all-round development.',
+      'Arts, music, and cultural activities to nurture creativity.',
+      'Safe campus with student-friendly infrastructure.',
+      'Regular assessments with personalized support.',
+      'Parent engagement through workshops and meetings.',
+      'Values-based education and leadership training.',
+    ],
+    motto: {
+      title: 'Learn, Love & Serve',
+      learn: 'To know all the things.',
+      love: 'Express the feelings in good.',
+      serve: 'We must help the poor people.',
+    },
     stats: {
       students: '300+',
       teachers: '20+',
@@ -11,6 +31,23 @@ window.siteData = {
     logo: 'school-logo.png',
     secondaryLogo: 'school-secondary-logo.png',
   },
+  leadership: [
+    {
+      role: 'Correspondent',
+      name: 'Mr. G.V. MANICKARAJA',
+      image: 'school-secondary-logo.png',
+    },
+    {
+      role: 'Principal',
+      name: 'Mr. Name',
+      image: 'leader-2.jpg',
+    },
+    {
+      role: 'Vice Principal',
+      name: 'Mrs. Name',
+      image: 'leader-3.jpg',
+    },
+  ],
   events: [
     {
       name: 'Annual Sports Day',
