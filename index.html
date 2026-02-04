@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santhosh School</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="logo">
+                    <img id="school-logo" src="images/school1/school-logo.png" alt="School Logo" class="logo-img">
+                    <span class="school-name">Santhosh School</span>
+                </div>
+                <div class="branch-selector">
+                    <label for="branch-dropdown">Select School:</label>
+                    <select id="branch-dropdown" class="branch-dropdown">
+                        <option value="branch1">School 1 - Whitefield</option>
+                        <option value="branch2">School 2 - Indiranagar</option>
+                    </select>
+                </div>
+            </div>
+            <div class="nav-right">
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About Us</a></li>
+                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                    <li><a href="#contact" class="nav-link">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Image Slider -->
+        <section id="home" class="hero-slider">
+            <div class="slider-container" id="slider-container">
+                <!-- Slides will be injected by JS per selected school -->
+                <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+                <a class="next" onclick="changeSlide(1)">&#10095;</a>
+            </div>
+            <div class="dots-container" id="dots-container">
+                <!-- Dots injected by JS -->
+            </div>
+        </section>
+
+        <!-- About Branch Section -->
+        <section id="about" class="branch-info">
+            <div class="branch-content">
+                <h2 class="branch-title">About Our School</h2>
+                <div class="branch-details" id="branch-details">
+                    <p id="branch-description">Loading...</p>
+                    <div class="branch-stats">
+                        <div class="stat">
+                            <h3 id="stat-students">500+</h3>
+                            <p>Students</p>
+                        </div>
+                        <div class="stat">
+                            <h3 id="stat-teachers">50+</h3>
+                            <p>Teachers</p>
+                        </div>
+                        <div class="stat">
+                            <h3 id="stat-classes">15+</h3>
+                            <p>Classes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News & Events Section -->
+        <section id="events" class="news-events">
+            <h2>News & Events</h2>
+            <div class="events-container" id="events-container">
+                <!-- Events will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- School Toppers Section -->
+        <section id="toppers" class="school-toppers">
+            <h2>School Toppers</h2>
+            <div class="toppers-container" id="toppers-container">
+                <!-- Toppers will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Photo Gallery Section -->
+        <section id="gallery" class="photo-gallery">
+            <h2>Photo Gallery</h2>
+            <div class="gallery-container" id="gallery-container">
+                <!-- Gallery images will be populated by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#admissions">Admissions</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Our Contacts</h3>
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i> +91-XXXXXXXXXX</p>
+                    <p><i class="fas fa-envelope"></i> info@santhoshschool.edu</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Whitefield, Bangalore</p>
+                </div>
+            </div>
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <img id="footer-logo-img" src="images/school1/school-logo.png" alt="School Logo">
+                    <div class="school-description">
+                        <h4>Santhosh School</h4>
+                        <p>Providing quality education and holistic development for students since 2000.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Santhosh School. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/data_school1.js"></script>
+    <script src="js/data_school2.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
