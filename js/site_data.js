@@ -4,11 +4,12 @@ window.siteData = {
     description:
       'Located in the heart of Whitefield, our Whitefield branch serves the community with excellence in education. We provide state-of-the-art infrastructure and experienced faculty dedicated to nurturing young minds. Our campus spans over 2 acres with modern classrooms, science labs, computer labs, and a spacious playground.',
     stats: {
-      students: '550+',
-      teachers: '65+',
-      classes: '18+',
+      students: '300+',
+      teachers: '20+',
+      classes: 'Pre-KG to 5th Grade',
     },
     logo: 'school-logo.png',
+    secondaryLogo: 'school-secondary-logo.png',
   },
   events: [
     {

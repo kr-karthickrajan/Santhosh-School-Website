@@ -68,8 +68,10 @@ function loadSiteData() {
     document.getElementById('stat-teachers').textContent = siteData.info.stats.teachers;
     document.getElementById('stat-classes').textContent = siteData.info.stats.classes;
     const headerLogo = document.getElementById('school-logo');
+    const headerLogoSecondary = document.getElementById('school-logo-secondary');
     const footerLogo = document.getElementById('footer-logo-img');
     if (headerLogo) headerLogo.src = getSiteImagePath(siteData.info.logo || 'school-logo.png');
+    if (headerLogoSecondary) headerLogoSecondary.src = getSiteImagePath(siteData.info.secondaryLogo || siteData.info.logo || 'school-logo.png');
     if (footerLogo) footerLogo.src = getSiteImagePath(siteData.info.logo || 'school-logo.png');
 }
 
