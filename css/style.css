@@ -200,7 +200,7 @@ body {
     transform: translateY(-7px) rotate(-45deg);
 }
 
-.nav-link {
+.nav-menu a {
     color: white;
     text-decoration: none;
     font-weight: 600;
@@ -209,11 +209,11 @@ body {
     position: relative;
 }
 
-.nav-link:hover {
+.nav-menu a:hover {
     color: var(--secondary-color);
 }
 
-.nav-link::after {
+.nav-menu a::after {
     content: '';
     position: absolute;
     bottom: -5px;
@@ -224,7 +224,7 @@ body {
     transition: width 0.3s ease;
 }
 
-.nav-link:hover::after {
+.nav-menu a:hover::after {
     width: 100%;
 }
 
@@ -791,6 +791,14 @@ body {
     color: var(--secondary-color);
 }
 
+.footer-map {
+    color: #d1d5db;
+    text-decoration: none;
+}
+
+.footer-map:hover {
+    color: var(--secondary-color);
+}
 .contact-info p {
     margin-bottom: 1rem;
     display: flex;

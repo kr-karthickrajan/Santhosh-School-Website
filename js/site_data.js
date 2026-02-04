@@ -1,5 +1,16 @@
 // Base site content (shared for all sections)
 window.siteData = {
+  nav: {
+    title: 'Santhosh Group of Schools',
+    logo: 'school-logo.png',
+    secondaryLogo: 'school-secondary-logo.png',
+    links: [
+      { label: 'Home', href: 'index.html#home' },
+      { label: 'About Us', href: 'index.html#about' },
+      { label: 'Gallery', href: 'gallery.html' },
+      { label: 'Contact Us', href: 'index.html#contact' },
+    ],
+  },
   info: {
     foundation:
       'SANTHOSH NURSERY & PRIMARY SCHOOL established and owned by our "KALVI THANTHAI" MR. G.V. MANICKARAJA with the advice of our headmaster Mr. M. JESURAJA B.Sc, M.Ed., in the year 1988. And hereby the School run by our Principal Mr. M. VINCENT PRAKASH B.F.A., DSA., Our school aim is to train youn children in good education and character especially belongs to the poor and marginalized society people.',
@@ -48,6 +59,35 @@ window.siteData = {
       image: 'leader-3.jpg',
     },
   ],
+  footer: {
+    quickLinks: [
+      { label: 'Home', href: 'index.html#home' },
+      { label: 'About Us', href: 'index.html#about' },
+      { label: 'Gallery', href: 'gallery.html' },
+      { label: 'Contact Us', href: 'index.html#contact' },
+    ],
+    contact: {
+      phone: '+91-XXXXXXXXXX',
+      email: 'info@santhoshschool.edu',
+      schools: [
+        {
+          name: 'School 1',
+          address: 'Whitefield, Bangalore',
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Whitefield%2C%20Bangalore',
+        },
+        {
+          name: 'School 2',
+          address: 'Indiranagar, Bangalore',
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Indiranagar%2C%20Bangalore',
+        },
+      ],
+    },
+    brand: {
+      name: 'Santhosh Group of Schools',
+      description: 'Providing quality education and holistic development for students since 1988.',
+    },
+    copyright: '© 2026 Santhosh Group of Schools. All rights reserved.',
+  },
   events: [
     {
       name: 'Annual Sports Day',
