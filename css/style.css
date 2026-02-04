@@ -3,6 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
 
 :root {
     --primary-color: #1e40af;
@@ -21,6 +26,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-color);
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 /* Navigation Bar */
@@ -189,6 +195,7 @@ body {
     background: var(--light-color);
     border-radius: 10px;
     overflow: hidden;
+    width: 100%;
     max-height: 500px;
     height: 500px;
 }
@@ -660,16 +667,30 @@ body {
     .events-container {
         max-height: 800px;
     }
+
+    .hero-slider {
+        padding: 1rem;
+        max-width: 100%;
+    }
+
+    .slider-container {
+        height: auto;
+        max-height: none;
+        aspect-ratio: 16 / 9;
+    }
 }
 
 @media (max-width: 480px) {
     .nav-container {
-        padding: 0 1rem;
+        padding: 0 0.75rem;
+        flex-wrap: wrap;
+        row-gap: 0.5rem;
     }
 
     .branch-selector {
         flex-direction: column;
         gap: 0.5rem;
+        width: 100%;
     }
 
     .nav-menu {
@@ -690,6 +711,43 @@ body {
 
     .gallery-container {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-slider {
+        padding: 0.5rem;
+    }
+
+    .slider-container {
+        aspect-ratio: 4 / 3;
+    }
+
+    .navbar {
+        padding: 0.5rem 0;
+    }
+
+    .nav-left {
+        width: 100%;
+        justify-content: space-between;
+        gap: 0.5rem;
+        min-width: 0;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        min-width: 0;
+    }
+
+    .school-name {
+        font-size: 1.1rem;
+    }
+
+    .branch-dropdown {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .nav-right {
+        width: 100%;
     }
 }
 
