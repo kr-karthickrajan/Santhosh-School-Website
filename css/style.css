@@ -196,8 +196,9 @@ body {
     border-radius: 10px;
     overflow: hidden;
     width: 100%;
-    max-height: 500px;
-    height: 500px;
+    height: auto;
+    max-height: none;
+    aspect-ratio: 16 / 9;
 }
 
 .slide {
@@ -481,7 +482,8 @@ body {
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
-    height: 250px;
+    height: auto;
+    aspect-ratio: 4 / 3;
 }
 
 .gallery-item:hover {
@@ -490,7 +492,7 @@ body {
 
 .gallery-item img {
     width: 100%;
-    height: 250px;
+    height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
 }
@@ -672,25 +674,23 @@ body {
         padding: 1rem;
         max-width: 100%;
     }
-
-    .slider-container {
-        height: auto;
-        max-height: none;
-        aspect-ratio: 16 / 9;
-    }
 }
 
 @media (max-width: 480px) {
     .nav-container {
         padding: 0 0.75rem;
         flex-wrap: wrap;
-        row-gap: 0.5rem;
+        row-gap: 0.35rem;
+        align-items: center;
     }
 
     .branch-selector {
-        flex-direction: column;
+        flex-direction: row;
         gap: 0.5rem;
         width: 100%;
+        min-width: 0;
+        align-items: center;
+        flex: 1 1 auto;
     }
 
     .nav-menu {
@@ -717,37 +717,70 @@ body {
         padding: 0.5rem;
     }
 
-    .slider-container {
-        aspect-ratio: 4 / 3;
-    }
-
     .navbar {
         padding: 0.5rem 0;
     }
 
     .nav-left {
         width: 100%;
-        justify-content: space-between;
-        gap: 0.5rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
         min-width: 0;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        align-items: center;
     }
 
     .logo {
         min-width: 0;
+        flex: 0 0 auto;
+        gap: 0.35rem;
     }
 
     .school-name {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        white-space: nowrap;
+    }
+
+    .branch-selector label {
+        white-space: nowrap;
+        font-size: 0.8rem;
     }
 
     .branch-dropdown {
         width: 100%;
         max-width: 100%;
+        min-width: 0;
+        flex: 1 1 auto;
     }
 
     .nav-right {
         width: 100%;
+    }
+
+    .nav-toggle {
+        margin-left: auto;
+        order: 2;
+        flex: 0 0 auto;
+    }
+
+    .nav-left {
+        order: 1;
+        flex: 1 1 auto;
+    }
+
+    .nav-right {
+        order: 3;
+    }
+
+    .branch-selector {
+        order: 2;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .nav-toggle {
+        order: 3;
     }
 }
 
