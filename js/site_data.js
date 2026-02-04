@@ -1,7 +1,6 @@
-// Data for School 1 (Whitefield)
-window.school1Data = {
+// Base site content (shared for all sections)
+window.siteData = {
   info: {
-    name: 'Santhosh School - Whitefield Branch',
     description:
       'Located in the heart of Whitefield, our Whitefield branch serves the community with excellence in education. We provide state-of-the-art infrastructure and experienced faculty dedicated to nurturing young minds. Our campus spans over 2 acres with modern classrooms, science labs, computer labs, and a spacious playground.',
     stats: {
@@ -9,14 +8,8 @@ window.school1Data = {
       teachers: '65+',
       classes: '18+',
     },
-    contact: {
-      phone: '+91-080-2500 5555',
-      email: 'whitefield@santhoshschool.edu',
-      address: 'Whitefield, Bangalore',
-    },
     logo: 'school-logo.png',
   },
-
   events: [
     {
       name: 'Annual Sports Day',
@@ -48,9 +41,7 @@ window.school1Data = {
       description:
         'Educational trip to a nearby tiger reserve to learn about wildlife conservation.',
     },
-    
   ],
-
   toppers: [
     {
       name: 'Aarav Singh',
@@ -80,22 +71,7 @@ window.school1Data = {
       rank: '4th',
       image: 'topper-4.jpg',
     },
-    
   ],
-
-  gallery: [
-    'gallery-1.jpg',
-    'gallery-2.jpg',
-    'gallery-3.jpg',
-    'gallery-4.jpg',
-    'gallery-5.jpg',
-    'gallery-6.jpg',
-    'gallery-7.jpg',
-    'gallery-8.jpg',
-    'gallery-9.jpg',
-    'gallery-10.jpg',
-  ],
-
   slider: [
     'slider-1.jpg',
     'slider-2.jpg',

@@ -1,22 +1,25 @@
-// Data is now provided by external files: js/data_school1.js and js/data_school2.js
- 
 let currentSlide = 1;
-let currentBranch = 'branch1';
+let currentGallery = 'school1';
 
-// Helper to get path for current school images
-function getImagePath(filename) {
-    const prefix = currentBranch === 'branch1' ? 'images/school1/' : 'images/school2/';
+const siteData = window.siteData || {};
+
+function getSiteImagePath(filename) {
+    return `images/siteImage/${filename}`;
+}
+
+function getGalleryImagePath(filename) {
+    const prefix = currentGallery === 'school1' ? 'images/school1/' : 'images/school2/';
     return prefix + filename;
 }
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
-    loadBranchData(currentBranch);
+    loadSiteData();
     initializeSlider();
-    loadEvents(currentBranch);
-    loadToppers(currentBranch);
+    loadEvents();
+    loadToppers();
     loadGallery();
-    setupBranchDropdown();
+    setupGalleryDropdown();
     // Mobile nav toggle
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
@@ -47,37 +50,32 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Setup branch dropdown
-function setupBranchDropdown() {
-    const dropdown = document.getElementById('branch-dropdown');
+// Setup gallery dropdown
+function setupGalleryDropdown() {
+    const dropdown = document.getElementById('gallery-branch');
+    if (!dropdown) return;
     dropdown.addEventListener('change', function(e) {
-        currentBranch = e.target.value;
-        loadBranchData(currentBranch);
-        loadEvents(currentBranch);
-        loadToppers(currentBranch);
+        currentGallery = e.target.value;
         loadGallery();
-        initializeSlider();
-        updateFooterContact(currentBranch);
     });
 }
 
-// Load branch data
-function loadBranchData(branch) {
-    const data = (branch === 'branch1' ? window.school1Data : window.school2Data)?.info || branchData[branch];
-    document.getElementById('branch-description').textContent = data.description;
-    document.getElementById('stat-students').textContent = data.stats.students;
-    document.getElementById('stat-teachers').textContent = data.stats.teachers;
-    document.getElementById('stat-classes').textContent = data.stats.classes;
-    // update header and footer logos
+// Load site data (single set for all sections)
+function loadSiteData() {
+    if (!siteData.info) return;
+    document.getElementById('branch-description').textContent = siteData.info.description;
+    document.getElementById('stat-students').textContent = siteData.info.stats.students;
+    document.getElementById('stat-teachers').textContent = siteData.info.stats.teachers;
+    document.getElementById('stat-classes').textContent = siteData.info.stats.classes;
     const headerLogo = document.getElementById('school-logo');
     const footerLogo = document.getElementById('footer-logo-img');
-    if (headerLogo) headerLogo.src = getImagePath(data.logo || 'school-logo.png');
-    if (footerLogo) footerLogo.src = getImagePath(data.logo || 'school-logo.png');
+    if (headerLogo) headerLogo.src = getSiteImagePath(siteData.info.logo || 'school-logo.png');
+    if (footerLogo) footerLogo.src = getSiteImagePath(siteData.info.logo || 'school-logo.png');
 }
 
 // Load and display events
-function loadEvents(branch) {
-    const events = (branch === 'branch1' ? window.school1Data : window.school2Data)?.events || eventsData[branch];
+function loadEvents() {
+    const events = siteData.events || [];
     const container = document.getElementById('events-container');
     container.innerHTML = '';
     
@@ -101,8 +99,8 @@ function loadEvents(branch) {
 }
 
 // Load and display toppers
-function loadToppers(branch) {
-    const toppers = (branch === 'branch1' ? window.school1Data : window.school2Data)?.toppers || toppersData[branch];
+function loadToppers() {
+    const toppers = siteData.toppers || [];
     const container = document.getElementById('toppers-container');
     container.innerHTML = '';
     
@@ -111,7 +109,7 @@ function loadToppers(branch) {
         topperCard.className = 'topper-card';
         
         topperCard.innerHTML = `
-            <img src="${getImagePath(topper.image)}" alt="${topper.name}" class="topper-image">
+            <img src="${getSiteImagePath(topper.image)}" alt="${topper.name}" class="topper-image">
             <h3>${topper.name}</h3>
             <div class="topper-info">
                 <p><strong>Class:</strong> ${topper.class}</p>
@@ -127,9 +125,7 @@ function loadToppers(branch) {
 // Load gallery
 function loadGallery() {
     const container = document.getElementById('gallery-container');
-    const galleryImages = ((currentBranch === 'branch1' ? window.school1Data : window.school2Data)?.gallery) || [
-        'gallery-1.jpg','gallery-2.jpg','gallery-3.jpg','gallery-4.jpg','gallery-5.jpg','gallery-6.jpg','gallery-7.jpg','gallery-8.jpg','gallery-9.jpg'
-    ];
+    const galleryImages = currentGallery === 'school2' ? (window.gallerySchool2 || []) : (window.gallerySchool1 || []);
     
     container.innerHTML = '';
     
@@ -138,7 +134,7 @@ function loadGallery() {
         galleryItem.className = 'gallery-item';
         
         galleryItem.innerHTML = `
-            <img src="${getImagePath(image)}" alt="Gallery Image ${index + 1}">
+            <img src="${getGalleryImagePath(image)}" alt="Gallery Image ${index + 1}">
             <div class="gallery-overlay">
 
             </div>
@@ -154,14 +150,14 @@ function initializeSlider() {
     const sliderContainer = document.getElementById('slider-container');
     const dotsContainer = document.getElementById('dots-container');
     if (!sliderContainer || !dotsContainer) return;
-    const sliderImages = ((currentBranch === 'branch1' ? window.school1Data : window.school2Data)?.slider) || ['slider-1.jpg','slider-2.jpg','slider-3.jpg','slider-4.jpg','slider-5.jpg'];
+    const sliderImages = siteData.slider || [];
     sliderContainer.querySelectorAll('.slide')?.forEach(n=>n.remove());
     dotsContainer.innerHTML = '';
 
     sliderImages.forEach((img, idx) => {
         const slide = document.createElement('div');
         slide.className = 'slide fade';
-        slide.innerHTML = `<img src="${getImagePath(img)}" alt="Slide ${idx+1}">`;
+        slide.innerHTML = `<img src="${getSiteImagePath(img)}" alt="Slide ${idx+1}">`;
         sliderContainer.insertBefore(slide, sliderContainer.querySelector('.prev'));
 
         const dot = document.createElement('span');
@@ -216,12 +212,6 @@ function autoSlides() {
 }
 
 setInterval(autoSlides, 5000);
-
-// Function to update footer contact based on branch
-function updateFooterContact(branch) {
-    const data = branchData[branch];
-    // You can update footer contact info here if needed
-}
 
 // Keyboard navigation for slider
 document.addEventListener('keydown', function(event) {

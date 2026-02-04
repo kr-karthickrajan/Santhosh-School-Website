@@ -16,13 +16,6 @@
                     <img id="school-logo" src="images/school1/school-logo.png" alt="School Logo" class="logo-img">
                     <span class="school-name">Santhosh School</span>
                 </div>
-                <div class="branch-selector">
-                    <label for="branch-dropdown">Select School:</label>
-                    <select id="branch-dropdown" class="branch-dropdown">
-                        <option value="branch1">School 1 - Whitefield</option>
-                        <option value="branch2">School 2 - Indiranagar</option>
-                    </select>
-                </div>
             </div>
             <!-- Mobile hamburger toggle -->
             <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -96,6 +89,13 @@
         <!-- Photo Gallery Section -->
         <section id="gallery" class="photo-gallery">
             <h2>Photo Gallery</h2>
+            <div class="gallery-selector">
+                <label for="gallery-branch">Select School:</label>
+                <select id="gallery-branch" class="gallery-dropdown">
+                    <option value="school1">School 1</option>
+                    <option value="school2">School 2</option>
+                </select>
+            </div>
             <div class="gallery-container" id="gallery-container">
                 <!-- Gallery images will be populated by JavaScript -->
             </div>
@@ -103,7 +103,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer id="contact" class="footer">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Quick Links</h3>
@@ -112,7 +112,6 @@
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#gallery">Gallery</a></li>
                     <li><a href="#contact">Contact Us</a></li>
-                    <li><a href="#admissions">Admissions</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -138,8 +137,9 @@
         </div>
     </footer>
 
-    <script src="js/data_school1.js"></script>
-    <script src="js/data_school2.js"></script>
+    <script src="js/site_data.js"></script>
+    <script src="js/gallery_school1.js"></script>
+    <script src="js/gallery_school2.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
